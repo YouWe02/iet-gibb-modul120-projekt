@@ -65,13 +65,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="APIDemo.cs" />
+    <Compile Include="API_Pokemon.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\KlasseA.cs" />
-    <Compile Include="Data\KlasseB.cs" />
+    <Compile Include="Data\Pokemon.cs" />
+    <Compile Include="Data\Typ.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -16,10 +16,10 @@ namespace M120Projekt.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<KlasseA>().ToTable("KlasseA"); // Damit kein "s" angehängt wird an Tabelle
-            modelBuilder.Entity<KlasseB>().ToTable("KlasseB"); // Damit kein "s" angehängt wird an Tabelle
+            modelBuilder.Entity<Pokemon>().ToTable("Pokemon");
+            modelBuilder.Entity<Typ>().ToTable("Typ");  
         }
-        public DbSet<KlasseA> KlasseA { get; set; }
-        public DbSet<KlasseB> KlasseB { get; set; }
+        public DbSet<Pokemon> Pokemon { get; set; }
+        public DbSet<Typ> Typ { get; set; }
     }
 }
