@@ -1,0 +1,46 @@
+﻿<Window x:Class="M120Projekt.View.Search"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M120Projekt.View"
+        mc:Ignorable="d"
+        Title="Search" Height="450" Width="800">
+    <StackPanel Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" ></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="Name" 
+                     Name="txtName" 
+                     Grid.Column="0" 
+                     Margin="25 1">
+            </TextBox>
+            <ComboBox Name="ddTypen" 
+                      Grid.Column="1" 
+                      Margin="25 1">
+            </ComboBox>
+            <ComboBox Name="ddGeneration" 
+                      Grid.Column="2"
+                      Margin="25 1">
+            </ComboBox>
+        </Grid>
+        <Button Content="Suchen" 
+                Width="60" 
+                Margin="20" 
+                Name="btnSuchen">
+        </Button>
+        <Label Content="" 
+               Height="1" 
+               Background="Black">
+        </Label>
+        <Label Content="Leider wurden keine Übereinstimmungen gefunden :(" 
+               HorizontalAlignment="Center" 
+               Visibility="Hidden"
+               Name="lblError" 
+               Foreground="Red">
+        </Label>
+    </StackPanel>
+</Window>
