@@ -6,40 +6,91 @@
         xmlns:local="clr-namespace:M120Projekt.View"
         mc:Ignorable="d"
         Title="Search" Height="450" Width="800">
+    
+    <!-- Main Element -->
     <StackPanel Margin="10">
+        
+        <!-- Search Formular / Header -->
         <Grid>
+            
+            <!-- Grid Definiitons-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" ></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox Text="Name" 
-                     Name="txtName" 
-                     Grid.Column="0" 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <!-- Name Label -->
+            <Label Name="lbl_Name_Header"
+                   Content="Name"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="23 0"> 
+            </Label>
+            <TextBox Name="txt_Name" 
+                     Grid.Column="0"
+                     Grid.Row="1"
                      Margin="25 1">
             </TextBox>
-            <ComboBox Name="ddTypen" 
-                      Grid.Column="1" 
+            <Label Name="lbl_Name_Error"
+                   Content="Eingabe ungültig"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Margin="23 0"
+                   Foreground="Red"
+                   Visibility="Hidden">
+            </Label>
+
+            <!-- Typ Drop Down -->
+            <Label Name="lbl_Typ_Header"
+                   Content="Typ"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Margin="23 0">
+            </Label>
+            <ComboBox Name="dd_Typen" 
+                      Grid.Column="1"
+                      Grid.Row="1"
                       Margin="25 1">
             </ComboBox>
-            <ComboBox Name="ddGeneration" 
+
+            <!-- Generation Drop Down -->
+            <Label Name="lbl_Generation_Header"
+                   Content="Generation"
+                   Grid.Column="2"
+                   Grid.Row="0"
+                   Margin="23 0">
+            </Label>
+            <ComboBox Name="dd_Generation" 
                       Grid.Column="2"
+                      Grid.Row="1"
                       Margin="25 1">
             </ComboBox>
         </Grid>
+        
+        <!-- Search Button -->
         <Button Content="Suchen" 
                 Width="60" 
                 Margin="20" 
-                Name="btnSuchen">
+                Name="btn_Suchen">
         </Button>
+        
+        <!-- Seperator -->
         <Label Content="" 
                Height="1" 
                Background="Black">
         </Label>
+        
+        <!-- Results Error -->
         <Label Content="Leider wurden keine Übereinstimmungen gefunden :(" 
                HorizontalAlignment="Center" 
                Visibility="Hidden"
-               Name="lblError" 
+               Name="lbl_ReadDB_Error" 
                Foreground="Red">
         </Label>
     </StackPanel>
