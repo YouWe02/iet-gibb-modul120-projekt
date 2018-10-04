@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Capa_1" Width="384" Height="384" Canvas.Left="0" Canvas.Top="0">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+        <Canvas.Resources/>
+        <Canvas Name="g10">
+      <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="16" Canvas.Top="16" Width="352" Height="352" Name="circle2" Fill="#FFFFCB05"/>
+      <Canvas Name="g8">
+        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4" Fill="#FF2F6EB5">
+          <Path.Data>
+            <PathGeometry Figures="M192 384c105.872 0 192-86.128 192-192c0-8.832-7.168-16-16-16s-16 7.168-16 16   c0 88.224-71.776 160-160 160S32 280.224 32 192S103.776 32 192 32c42.952 0 83.264 16.792 113.52 47.272   c6.224 6.272 16.352 6.312 22.632 0.088c6.272-6.224 6.312-16.352 0.08-22.624C291.928 20.152 243.544 0 192 0   C86.128 0 0 86.128 0 192S86.128 384 192 384z" FillRule="NonZero"/>
+          </Path.Data>
+        </Path>
+        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6" Fill="#FF2F6EB5">
+          <Path.Data>
+            <PathGeometry Figures="M192 272c8.832 0 16-7.168 16-16v-48h48c8.832 0 16-7.168 16-16s-7.168-16-16-16h-48v-48   c0-8.832-7.168-16-16-16s-16 7.168-16 16v48h-48c-8.832 0-16 7.168-16 16s7.168 16 16 16h48v48C176 264.832 183.168 272 192 272z" FillRule="NonZero"/>
+          </Path.Data>
+        </Path>
+      </Canvas>
+    </Canvas>
+  </Canvas>
+</Viewbox>

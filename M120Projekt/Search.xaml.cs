@@ -32,7 +32,14 @@ namespace M120Projekt.View
 
         public void search(object sender, EventArgs e)
         {
-            List<Data.Pokemon> pkms = readDatabase(txt_Name.Text, dd_Typen.Text, Int16.Parse(dd_Generation.Text));
+            List<Data.Pokemon> pkms;
+            try
+            {
+                pkms = readDatabase(txt_Name.Text, dd_Typen.Text, Int16.Parse(dd_Generation.Text));
+            } catch
+            {
+                pkms = readDatabase(txt_Name.Text, dd_Typen.Text, 0);
+            }
             if(pkms.Count < 1)
             {
                 lbl_ReadDB_Error.Visibility = Visibility.Visible;
