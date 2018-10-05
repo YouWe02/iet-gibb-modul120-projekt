@@ -23,5 +23,10 @@ namespace M120Projekt
         {
             InitializeComponent();
         }
+
+        public void InitNavBar()
+        {
+            
+        }
     }
 }

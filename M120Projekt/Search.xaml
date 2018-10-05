@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt.View"
         mc:Ignorable="d"
-        Title="Search" Height="800" Width="800">
+        Title="Search" Height="800" Width="800"
+        Icon="Assets/Images/pikachu.ico">
 
     <!-- Main Element -->
     <StackPanel Margin="10">
@@ -60,7 +61,7 @@
             </Viewbox>
 
 
-            <Button Name="btnHome"
+            <Button Name="btn_Home"
                     Margin="10"
                     Padding="0"
                     BorderThickness="0"
@@ -105,7 +106,7 @@
 
                 </Button.Content>
             </Button>
-            <Button Name="btnCreate"
+            <Button Name="btn_Create"
                     Margin="10"
                     Padding="0"
                     Background="Transparent"
