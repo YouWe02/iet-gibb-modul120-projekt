@@ -67,7 +67,7 @@
                     Height="30"
                     Width="30"
                     Background="Transparent"
-                    Cursor="Hand"
+                    Cursor="Hand" Click="ChangeViewListener"
                     >
                 <Button.Content>
                     <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
@@ -136,7 +136,7 @@
                     BorderThickness="0"
                     Height="30"
                     Width="30"
-                    Cursor="Hand">
+                    Cursor="Hand" Click="ChangeViewListener">
                 <Button.Content>
                     <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                         <Canvas Name="svg14" Width="383" Height="383.998">
@@ -203,7 +203,9 @@
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
                          VerticalAlignment="Center"
-                         Name="txt_Name"></TextBox>
+                         Name="txt_Name_String"
+                         MaxLength="30"
+                         KeyUp="validateTextBox"></TextBox>
                 <Label Grid.Row="2"
                        Content="Typ 1:"
                        Name="lbl_Typen1"></Label>
@@ -247,54 +249,66 @@
             <Label Name="lbl_KP"
                    Content="KP:"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_KP"
+            <TextBox Name="txt_KP_Int"
                      Grid.Column="1"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
             <Label Name="lbl_Angriff"
                    Content="Ang:"
                    Grid.Column="2"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_Angriff"
+            <TextBox Name="txt_Angriff_Int"
                      Grid.Column="3"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
             <Label Name="lbl_Verteidigung"
                    Content="Vert:"
                    Grid.Column="4"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_Verteidigung"
+            <TextBox Name="txt_Verteidigung_Int"
                      Grid.Column="5"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
             <Label Name="lbl_Initiative"
                    Content="Init:"
                    Grid.Row="2"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_Initiative"
+            <TextBox Name="txt_Initiative_Int"
                      Grid.Column="1"
                      Grid.Row="2"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
             <Label Name="lbl_SpezialAngriff"
                    Content="SpzAng:"
                    Grid.Column="2"
                    Grid.Row="2"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_SpezialAngriff"
+            <TextBox Name="txt_SpezialAngriff_Int"
                      Grid.Column="3"
                      Grid.Row="2"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
             <Label Name="lbl_SpezialVerteidigung"
                    Content="SpzVert:"
                    Grid.Column="4"
                    Grid.Row="2"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_SpezialVerteidigung"
+            <TextBox Name="txt_SpezialVerteidigung_Int"
                      Grid.Row="2"
                      Grid.Column="5"
-                     Margin="0 6"></TextBox>
+                     Margin="0 6"
+                     MaxLength="3"
+                     KeyUp="validateTextBox"></TextBox>
 
         </Grid>
 
@@ -302,9 +316,10 @@
                Content="Pokédex Eintrag:"></Label>
         <TextBox Name="txt_Pokedex"
                  Margin="10"
-                 Height="60"></TextBox>
+                 Height="60"
+                 MaxLength="255"></TextBox>
 
-        <Button Content="Erstellen"
+        <Button Content="Speichern"
                 Name="btn_Create"
                 Height="30"
                 Margin="0 20 0 0"

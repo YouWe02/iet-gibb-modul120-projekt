@@ -80,6 +80,34 @@ namespace M120Projekt.View
             return "lbl_" + nameOfInput + "_Error";
         }
 
+        private void ChangeViewListener(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            String windowName = btn.Name.Split('_')[1];
+            switch (windowName)
+            {
+                case "Create":
+                    Create createWindow = new Create();
+                    createWindow.Show();
+                    Close();
+                    break;
+
+                case "Search":
+                    Search searchWindow = new Search();
+                    searchWindow.Show();
+                    Close();
+                    break;
+
+                case "Home":
+                    Home homeWindow = new Home();
+                    homeWindow.Show();
+                    Close();
+                    break;
+
+            }
+        }
+
+
         public void InitDropDownTyp()
         {
             dd_Typen.Items.Add("Alle");

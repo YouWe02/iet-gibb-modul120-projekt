@@ -1,7 +1,9 @@
-﻿using System;
+﻿using M120Projekt.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,11 +21,65 @@ namespace M120Projekt
     /// </summary>
     public partial class Create : Window
     {
+
+        private Regex regexInt = new Regex("^[0-9]+$");
+        private Regex regexString = new Regex("^[a-zA-Z]+$");
+
         public Create()
         {
             InitializeComponent();
             InitDropDownGeneration();
             InitDropDownsTyp();
+        }
+
+        private void ChangeViewListener(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            Popup popup = new Popup(this, btn);
+            IsEnabled = false;
+            popup.Show();
+        }
+
+        public void ChangeView(String view)
+        {
+            switch (view)
+            {
+                case "Create":
+                    Create createWindow = new Create();
+                    createWindow.Show();
+                    break;
+
+                case "Search":
+                    Search searchWindow = new Search();
+                    searchWindow.Show();
+                    break;
+
+                case "Home":
+                    Home homeWindow = new Home();
+                    homeWindow.Show();
+                    break;
+
+            }
+        }
+
+        public void validateTextBox(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            Label lbl = (Label)this.FindName("lbl_" + txt.Name.Split('_')[1]);
+            String datatype = txt.Name.Split('_')[2];
+            if (datatype.Equals("String"))
+            {
+                if (regexString.IsMatch(txt.Text) || txt.Text.Equals(""))
+                {
+                    btn_Create.IsEnabled = true;
+                    lbl.Foreground = Brushes.Black;
+                }
+                else
+                {
+                    btn_Create.IsEnabled = false;
+                    lbl.Foreground = Brushes.Red;
+                }
+            }
         }
 
         public void InitDropDownsTyp()
@@ -82,5 +138,6 @@ namespace M120Projekt
             dd_Generation.Items.Add("7");
             dd_Generation.SelectedIndex = 0;
         }
+
     }
 }

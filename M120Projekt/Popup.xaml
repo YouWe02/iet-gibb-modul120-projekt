@@ -1,0 +1,29 @@
+﻿<Window x:Class="M120Projekt.Popup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M120Projekt"
+        mc:Ignorable="d"
+        Icon="Assets/Images/Pikachu.ico"
+        Title="Popup" Height="200" Width="280" Closing="Close">
+    <StackPanel>
+        <Label Margin="10 40 10 0" HorizontalAlignment="Center">
+            <TextBlock TextAlignment="Center">
+                Möchtest du diese Seite verlassen?
+                <LineBreak></LineBreak>
+                Alle Änderungen gehen verloren.
+            </TextBlock>
+        </Label>
+        <StackPanel Orientation="Horizontal">
+            <Button Name="btn_Leave"
+                    Height="25"
+                    Width="50"
+                    Margin="60 20 30 0" Click="ButtonListener">Ja</Button>
+            <Button Name="btn_Stay"
+                    Height="25"
+                    Width="50"
+                    Margin="30 20 60 0" Click="ButtonListener">Nein</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
