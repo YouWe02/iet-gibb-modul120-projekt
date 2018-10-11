@@ -19,9 +19,9 @@ namespace M120Projekt
     /// <summary>
     /// Interaktionslogik für Create.xaml
     /// </summary>
-    public partial class Create : Window
+    public partial class Create : UserControl
     {
-
+        private 
         private Regex regexInt = new Regex("^[0-9]+$");
         private Regex regexString = new Regex("^[a-zA-Z]+$");
 
@@ -32,7 +32,7 @@ namespace M120Projekt
             InitDropDownsTyp();
         }
 
-        private void ChangeViewListener(object sender, RoutedEventArgs e)
+        private void ChangeViewListener(object sender)
         {
             Button btn = (Button)sender;
             Popup popup = new Popup(this, btn);
@@ -40,26 +40,21 @@ namespace M120Projekt
             popup.Show();
         }
 
-        public void ChangeView(String view)
+        public UserControl ChangeView(String view)
         {
             switch (view)
             {
                 case "Create":
-                    Create createWindow = new Create();
-                    createWindow.Show();
-                    break;
+                    return this;
 
                 case "Search":
-                    Search searchWindow = new Search();
-                    searchWindow.Show();
-                    break;
+                    return new Search();
 
                 case "Home":
-                    Home homeWindow = new Home();
-                    homeWindow.Show();
-                    break;
+                    return new Home();
 
             }
+            return this;
         }
 
         public void validateTextBox(object sender, EventArgs e)

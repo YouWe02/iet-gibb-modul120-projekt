@@ -18,7 +18,7 @@ namespace M120Projekt.View
     /// <summary>
     /// Interaktionslogik für Search.xaml
     /// </summary>
-    public partial class Search : Window
+    public partial class Search : UserControl
     {
         private Regex regexName = new Regex("^[a-zA-Z]+$");
 
@@ -80,31 +80,23 @@ namespace M120Projekt.View
             return "lbl_" + nameOfInput + "_Error";
         }
 
-        private void ChangeViewListener(object sender, RoutedEventArgs e)
+        private UserControl ChangeViewListener(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             String windowName = btn.Name.Split('_')[1];
             switch (windowName)
             {
                 case "Create":
-                    Create createWindow = new Create();
-                    createWindow.Show();
-                    Close();
-                    break;
+                    return new Create();
 
                 case "Search":
-                    Search searchWindow = new Search();
-                    searchWindow.Show();
-                    Close();
-                    break;
+                    return this;
 
                 case "Home":
-                    Home homeWindow = new Home();
-                    homeWindow.Show();
-                    Close();
-                    break;
+                    return new Home();
 
             }
+            return this;
         }
 
 

@@ -19,38 +19,30 @@ namespace M120Projekt
     /// <summary>
     /// Interaktionslogik für Home.xaml
     /// </summary>
-    public partial class Home : Window
+    public partial class Home : UserControl
     {
         public Home()
         {
             InitializeComponent();
         }
 
-        private void ChangeViewListener(object sender, RoutedEventArgs e)
+        private UserControl ChangeViewListener(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             String windowName = btn.Name.Split('_')[1];
             switch (windowName)
             {
                 case "Create":
-                    Create createWindow = new Create();
-                    createWindow.Show();
-                    Close();
-                    break;
+                    return new Create();
 
                 case "Search":
-                    Search searchWindow = new Search();
-                    searchWindow.Show();
-                    Close();
-                    break;
+                    return new Search();
 
                 case "Home":
-                    Home homeWindow = new Home();
-                    homeWindow.Show();
-                    Close();
-                    break;
+                    return this;
 
             }
+            return this;
         }
 
     }
