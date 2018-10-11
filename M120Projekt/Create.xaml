@@ -249,7 +249,8 @@
             <Label Name="lbl_KP"
                    Content="KP:"
                    Margin="0 2"></Label>
-            <TextBox Name="txt_KP_Int"
+            <TextBox Name="txt_KP_Int
+                     "
                      Grid.Column="1"
                      Margin="0 6"
                      MaxLength="3"
