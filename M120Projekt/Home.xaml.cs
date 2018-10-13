@@ -26,24 +26,5 @@ namespace M120Projekt
             InitializeComponent();
         }
 
-        private UserControl ChangeViewListener(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            String windowName = btn.Name.Split('_')[1];
-            switch (windowName)
-            {
-                case "Create":
-                    return new Create();
-
-                case "Search":
-                    return new Search();
-
-                case "Home":
-                    return this;
-
-            }
-            return this;
-        }
-
     }
 }

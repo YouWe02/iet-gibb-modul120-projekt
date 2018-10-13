@@ -206,5 +206,6 @@
                 </Button.Content>
             </Button>
         </StackPanel>
+        <StackPanel Name="stp_content"></StackPanel>
     </StackPanel>
 </Window>

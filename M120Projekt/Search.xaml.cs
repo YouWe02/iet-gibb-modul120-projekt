@@ -80,24 +80,6 @@ namespace M120Projekt.View
             return "lbl_" + nameOfInput + "_Error";
         }
 
-        private UserControl ChangeViewListener(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            String windowName = btn.Name.Split('_')[1];
-            switch (windowName)
-            {
-                case "Create":
-                    return new Create();
-
-                case "Search":
-                    return this;
-
-                case "Home":
-                    return new Home();
-
-            }
-            return this;
-        }
 
 
         public void InitDropDownTyp()

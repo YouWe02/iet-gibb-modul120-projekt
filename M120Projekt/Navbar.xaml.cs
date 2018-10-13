@@ -1,4 +1,5 @@
-﻿using System;
+﻿using M120Projekt.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,55 @@ namespace M120Projekt
     /// </summary>
     public partial class Navbar : Window
     {
+        private Create createView;
+        private Home homeView;
+        private Search searchView;
+
+        private Boolean create = false;
+
         public Navbar()
         {
             InitializeComponent();
+            homeView = new Home();
+            stp_content.Children.Add(homeView);
+        }
+
+        public void ChangeViewListener (object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (create)
+            {
+                IsEnabled = false;
+                Popup popup = new Popup(this, btn);
+                popup.Show();
+            } else
+            {
+                ChangeView(btn.Name.Split('_')[1]);
+            }
+        }
+        public void ChangeView(String desiredView)
+        {
+            stp_content.Children.RemoveAt(0);
+            switch (desiredView)
+            {
+                case "Home":
+                    create = false;
+                    homeView = new Home();
+                    stp_content.Children.Add(homeView);
+                    break;
+                case "Search":
+                    create = false;
+                    searchView = new Search();
+                    stp_content.Children.Add(searchView);
+                    break;
+                case "Create":
+                    create = true;
+                    createView = new Create();
+                    stp_content.Children.Add(createView);
+                    break;
+            }
+
         }
     }
 }

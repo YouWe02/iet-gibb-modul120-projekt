@@ -19,11 +19,11 @@ namespace M120Projekt
     /// </summary>
     public partial class Popup : Window
     {
-        private Create oldWindow;
+        private Navbar view;
         private Button desiredView;
-        public Popup(Create oldWindow, Button desiredView)
+        public Popup(Navbar view, Button desiredView)
         {
-            this.oldWindow = oldWindow;
+            this.view = view;
             this.desiredView = desiredView;
             InitializeComponent();
         }
@@ -33,20 +33,19 @@ namespace M120Projekt
             Button clicked = (Button)sender;
             if (clicked.Name.Equals("btn_Stay"))
             {
-                oldWindow.IsEnabled = true;
+                view.IsEnabled = true;
                 Close();
             }
             else
             {
-                oldWindow.ChangeView(desiredView.Name.Split('_')[1]);
-                oldWindow.Close();
+                view.ChangeView(desiredView.Name.Split('_')[1]);
                 Close();
             }
         }
 
         private void Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            oldWindow.IsEnabled = true;
+            view.IsEnabled = true;
         }
     }
 }

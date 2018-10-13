@@ -21,7 +21,6 @@ namespace M120Projekt
     /// </summary>
     public partial class Create : UserControl
     {
-        private 
         private Regex regexInt = new Regex("^[0-9]+$");
         private Regex regexString = new Regex("^[a-zA-Z]+$");
 
@@ -30,31 +29,6 @@ namespace M120Projekt
             InitializeComponent();
             InitDropDownGeneration();
             InitDropDownsTyp();
-        }
-
-        private void ChangeViewListener(object sender)
-        {
-            Button btn = (Button)sender;
-            Popup popup = new Popup(this, btn);
-            IsEnabled = false;
-            popup.Show();
-        }
-
-        public UserControl ChangeView(String view)
-        {
-            switch (view)
-            {
-                case "Create":
-                    return this;
-
-                case "Search":
-                    return new Search();
-
-                case "Home":
-                    return new Home();
-
-            }
-            return this;
         }
 
         public void validateTextBox(object sender, EventArgs e)
