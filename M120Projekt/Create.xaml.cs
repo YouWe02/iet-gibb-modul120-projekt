@@ -48,6 +48,18 @@ namespace M120Projekt
                     btn_Create.IsEnabled = false;
                     lbl.Foreground = Brushes.Red;
                 }
+            } else if (datatype.Equals("Int"))
+            {
+                if(regexInt.IsMatch(txt.Text) || txt.Text.Equals(""))
+                {
+                    btn_Create.IsEnabled = true;
+                    lbl.Foreground = Brushes.Black;
+                }
+                else
+                {
+                    btn_Create.IsEnabled = false;
+                    lbl.Foreground = Brushes.Red;
+                }
             }
         }
 
