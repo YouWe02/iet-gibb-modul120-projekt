@@ -1,6 +1,7 @@
 ﻿using M120Projekt.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -63,53 +64,48 @@ namespace M120Projekt
             }
         }
 
+        private void Save(object sender, RoutedEventArgs e) {
+            long pkdx_nr = long.Parse(txt_PokedexNr_Int.Text);
+            string name = txt_Name_String.Text;
+
+            long generation = long.Parse(dd_Generation.SelectedValue.ToString());
+
+            long angriff = long.Parse(txt_Angriff_Int.Text);
+            long verteidigung = long.Parse(txt_Verteidigung_Int.Text);
+            long spezial_angriff = long.Parse(txt_SpezialAngriff_Int.Text);
+            long spezial_verteidigung = long.Parse(txt_SpezialVerteidigung_Int.Text);
+            long kp = long.Parse(txt_KP_Int.Text);
+            long initiative = long.Parse(txt_Initiative_Int.Text);
+
+            string pokedex_eintrag = txt_Pokedex.Text;
+
+            ICollection<Data.Typ> typen = new Collection<Data.Typ>();
+
+            long typ_1 = long.Parse(dd_Typen1.SelectedValue.ToString());
+            long typ_2 = long.Parse(dd_Typen2.SelectedValue.ToString());
+
+            typen.Add(API_Pokemon.Get_Type_By_ID(typ_1));
+            if(typ_2 != 0)
+            {
+                typen.Add(API_Pokemon.Get_Type_By_ID(typ_2));
+            }
+
+            API_Pokemon.Create_Pokemon(pkdx_nr, name, generation, angriff, verteidigung, spezial_angriff, spezial_verteidigung, kp, initiative, pokedex_eintrag, typen);
+        }
         public void InitDropDownsTyp()
         {
-            dd_Typen1.Items.Add("Normal");
-            dd_Typen1.Items.Add("Kampf");
-            dd_Typen1.Items.Add("Flug");
-            dd_Typen1.Items.Add("Gift");
-            dd_Typen1.Items.Add("Boden");
-            dd_Typen1.Items.Add("Gestein");
-            dd_Typen1.Items.Add("Käfer");
-            dd_Typen1.Items.Add("Geist");
-            dd_Typen1.Items.Add("Stahl");
-            dd_Typen1.Items.Add("Feuer");
-            dd_Typen1.Items.Add("Wasser");
-            dd_Typen1.Items.Add("Pflanze");
-            dd_Typen1.Items.Add("Elektro");
-            dd_Typen1.Items.Add("Psycho");
-            dd_Typen1.Items.Add("Eis");
-            dd_Typen1.Items.Add("Drache");
-            dd_Typen1.Items.Add("Unlicht");
-            dd_Typen1.Items.Add("Fee");
+            ICollection<Data.Typ> types = API_Pokemon.Get_All_Types();
+            dd_Typen2.Items.Add(new KeyValuePair<int, string>(0, "--none--"));
+            foreach (Data.Typ type in types) {
+                dd_Typen1.Items.Add(new KeyValuePair<int, string>((int)type.ID_Typ, type.Type));
+                dd_Typen2.Items.Add(new KeyValuePair<int, string>((int)type.ID_Typ, type.Type));
+            }
             dd_Typen1.SelectedIndex = 0;
-
-            dd_Typen2.Items.Add("Keinen");
-            dd_Typen2.Items.Add("Normal");
-            dd_Typen2.Items.Add("Kampf");
-            dd_Typen2.Items.Add("Flug");
-            dd_Typen2.Items.Add("Gift");
-            dd_Typen2.Items.Add("Boden");
-            dd_Typen2.Items.Add("Gestein");
-            dd_Typen2.Items.Add("Käfer");
-            dd_Typen2.Items.Add("Geist");
-            dd_Typen2.Items.Add("Stahl");
-            dd_Typen2.Items.Add("Feuer");
-            dd_Typen2.Items.Add("Wasser");
-            dd_Typen2.Items.Add("Pflanze");
-            dd_Typen2.Items.Add("Elektro");
-            dd_Typen2.Items.Add("Psycho");
-            dd_Typen2.Items.Add("Eis");
-            dd_Typen2.Items.Add("Drache");
-            dd_Typen2.Items.Add("Unlicht");
-            dd_Typen2.Items.Add("Fee");
             dd_Typen2.SelectedIndex = 0;
         }
 
         public void InitDropDownGeneration()
         {
-            dd_Generation.Items.Add("Alle");
             dd_Generation.Items.Add("1");
             dd_Generation.Items.Add("2");
             dd_Generation.Items.Add("3");

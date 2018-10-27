@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace M120Projekt.Data
 {
@@ -14,11 +15,8 @@ namespace M120Projekt.Data
         #region Datenbankschicht
         [Key]
         public Int64 Nr_Pokemon { get; set; }
-        [Required]
         public String Name { get; set; }
-        [Required]
         public Int64 Generation { get; set; }
-        [Required]
         public Int64 Angriff { get; set; }
         public Int64 Spezial_Angriff { get; set; }
         public Int64 Verteidigung { get; set; }
@@ -27,7 +25,7 @@ namespace M120Projekt.Data
         public Int64 Initiative { get; set; }
         public String Pokedex_Eintrag { get; set; }
         public Byte[] Bild { get; set; }
-        public ICollection<Typ> FremdschluesselListe_Typ { get; set; }
+        public ICollection<Typ> Typ { get; set; }
         #endregion
 
 
@@ -44,40 +42,28 @@ namespace M120Projekt.Data
         }
         public static List<Data.Pokemon> GetAllPokemons()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.FremdschluesselListe_Typ) select record).ToList();
+                return (from record in context.Pokemon.Include(x => x.Typ) select record).ToList();
             }
         }
         public static Data.Pokemon GetPokemonByNr(Int64 Nr_Pokemon)
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.FremdschluesselListe_Typ) where record.Nr_Pokemon == Nr_Pokemon select record).FirstOrDefault();
+                return (from record in context.Pokemon.Include(x => x.Typ) where record.Nr_Pokemon == Nr_Pokemon select record).FirstOrDefault();
             }
         }
         public static List<Data.Pokemon> SearchByName(String name)
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.FremdschluesselListe_Typ) where record.Name == name select record).ToList();
+                return (from record in context.Pokemon.Include(x => x.Typ) where record.Name.StartsWith(name) select record).ToList();
             }
         }
         public Int64 Erstellen()
         {
-            if (Nr_Pokemon == null || this.Nr_Pokemon == 0)
-            {
-                Console.WriteLine("CREATE EXCEPTION: NR WRONG, NULL OR ZERO");
-                throw new Exception("EXCEPTION AT CREATING VALUE, NR_Pokemon IS WRONG");
-            }
-            if (Name == null)
-            {
-                Console.WriteLine("CREATE EXCEPTION: NAME WRONG, NULL");
-                throw new Exception("EXCEPTION AT CREATING VALUE, NAME IS WRONG");
-            }
-
-
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 context.Pokemon.Add(this);
                 //TODO Check ob mit null möglich, sonst throw Ex
@@ -88,10 +74,10 @@ namespace M120Projekt.Data
         }
         public Int64 Aktualisieren()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 //TODO null Checks?
-                this.FremdschluesselListe_Typ = null;
+                this.Typ = null;
                 context.Entry(this).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return this.Nr_Pokemon;
@@ -99,7 +85,7 @@ namespace M120Projekt.Data
         }
         public void Loeschen()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
                 context.SaveChanges();

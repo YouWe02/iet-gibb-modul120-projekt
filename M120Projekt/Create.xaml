@@ -9,15 +9,16 @@
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal" Height="150">
-            <Label AllowDrop="True"
-                   Width="120"
-                   Height="150"
-                   Margin="50 0 0 0"
-                   Content="Bild hier hinziehen"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   BorderThickness="1px"
-                   BorderBrush="Black"></Label>
+            <StackPanel x:Name="DropArea"
+                        AllowDrop="True"
+                        Background="#D8D8D8"
+                        Margin=" 30 15 50 15">
+                <Rectangle Stroke="#FF000000"
+                           Height="120"
+                           Width="120"
+                           StrokeThickness="1"
+                           StrokeDashArray="4 4"/>
+            </StackPanel>
             <Grid Margin="50 0" Width="190">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"></RowDefinition>
@@ -43,7 +44,9 @@
                 <Label Grid.Row="2"
                        Content="Typ 1:"
                        Name="lbl_Typen1"></Label>
-                <ComboBox Name="dd_Typen1" 
+                <ComboBox Name="dd_Typen1"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
                       Grid.Column="1"
                       Grid.Row="2"
                       Margin="0 3">
@@ -51,7 +54,9 @@
                 <Label Grid.Row="4"
                        Content="Typ 2:"
                        Name="lbl_Typen2"></Label>
-                <ComboBox Name="dd_Typen2" 
+                <ComboBox Name="dd_Typen2"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
                       Grid.Column="1"
                       Grid.Row="4"
                       Margin="0 3">
@@ -147,6 +152,12 @@
 
         </Grid>
 
+        <Label Name="lbl_PekedexNr"
+               Content="Pokédex Nummer:"></Label>
+        <TextBox Name="txt_PokedexNr_Int"
+                 Margin="10"
+                 Height="20"
+                 MaxLength="3"></TextBox>
         <Label Name="lbl_Pokedex"
                Content="Pokédex Eintrag:"></Label>
         <TextBox Name="txt_Pokedex"
@@ -158,6 +169,7 @@
                 Name="btn_Create"
                 Height="30"
                 Margin="0 20 0 0"
-                Width="100"></Button>
+                Width="100"
+                Click="Save"></Button>
     </StackPanel>
 </UserControl>

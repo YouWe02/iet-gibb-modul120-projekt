@@ -18,8 +18,7 @@ namespace M120Projekt.Data
         public Int64 ID_Typ { get; set; }
         [Required]
         public String Type { get; set; }
-        [Required]
-        public ICollection<Pokemon> FremdschluesselListe_Pokemon { get; set; }
+        public ICollection<Pokemon> Pokemon { get; set; }
         #endregion
 
 
@@ -29,25 +28,26 @@ namespace M120Projekt.Data
         #region Applikationsschicht
         public Typ() { }
 
+        
         public static List<Data.Typ> GetAllTypes()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                return (from record in context.Typ.Include(x => x.FremdschluesselListe_Pokemon) select record).ToList();
+                return (from record in context.Typ select record).ToList();
             }
         }
         public static Data.Typ GetTypeByID(Int64 idtyp)
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                return (from record in context.Typ.Include(x => x.FremdschluesselListe_Pokemon) where record.ID_Typ == idtyp select record).FirstOrDefault();
+                return (from record in context.Typ where record.ID_Typ == idtyp select record).FirstOrDefault();
             }
         }
         public static List<Data.Typ> Search(String value)
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
-                var klasseBquery = (from record in context.Typ.Include(x => x.FremdschluesselListe_Pokemon) where record.Type == value select record).ToList();
+                var klasseBquery = (from record in context.Typ where record.Type == value select record).ToList();
                 return klasseBquery;
             }
         }
@@ -64,12 +64,12 @@ namespace M120Projekt.Data
                 Console.WriteLine("CREATE EXCEPTION: Type WRONG, NULL");
                 throw new Exception("EXCEPTION AT CREATING VALUE, Type IS WRONG");
             }
-            if(FremdschluesselListe_Pokemon == null)
+            if(Pokemon == null)
             {
-                FremdschluesselListe_Pokemon = new Collection<Data.Pokemon>();
+                Pokemon = new Collection<Data.Pokemon>();
             }
 
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 try
                 {
@@ -95,7 +95,7 @@ namespace M120Projekt.Data
         }
         public void Aktualisieren()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 //TODO null Checks?
                 context.Entry(this).State = System.Data.Entity.EntityState.Modified;
@@ -104,7 +104,7 @@ namespace M120Projekt.Data
         }
         public void Loeschen()
         {
-            using (var context = new Data.Context())
+            using (var context = new Context())
             {
                 context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
                 context.SaveChanges();
