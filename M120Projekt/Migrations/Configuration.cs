@@ -40,7 +40,7 @@ namespace M120Projekt.Migrations
                 defaultTypes.Add(new Data.Typ { Type = "Unlicht" });
                 defaultTypes.Add(new Data.Typ { Type = "Gift" });
 
-                context.Typ.AddRange(defaultTypes);
+                context.Typs.AddRange(defaultTypes);
 
             }
 

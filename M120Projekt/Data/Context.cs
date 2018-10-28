@@ -16,11 +16,11 @@ namespace M120Projekt.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pokemon>();
             modelBuilder.Entity<Typ>();
+            modelBuilder.Entity<Pokemon>();
         }
-        public DbSet<Pokemon> Pokemon { get; set; }
-        public DbSet<Typ> Typ { get; set; }
+        public DbSet<Pokemon> Pokemons { get; set; }
+        public DbSet<Typ> Typs { get; set; }
 
     }
 }

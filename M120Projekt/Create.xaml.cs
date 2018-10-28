@@ -79,15 +79,15 @@ namespace M120Projekt
 
             string pokedex_eintrag = txt_Pokedex.Text;
 
-            ICollection<Data.Typ> typen = new Collection<Data.Typ>();
+            List<Int64> typen = new List<long>();
 
             long typ_1 = long.Parse(dd_Typen1.SelectedValue.ToString());
             long typ_2 = long.Parse(dd_Typen2.SelectedValue.ToString());
 
-            typen.Add(API_Pokemon.Get_Type_By_ID(typ_1));
+            typen.Add(typ_1);
             if(typ_2 != 0)
             {
-                typen.Add(API_Pokemon.Get_Type_By_ID(typ_2));
+                typen.Add(typ_2);
             }
 
             API_Pokemon.Create_Pokemon(pkdx_nr, name, generation, angriff, verteidigung, spezial_angriff, spezial_verteidigung, kp, initiative, pokedex_eintrag, typen);

@@ -25,7 +25,7 @@ namespace M120Projekt.Data
         public Int64 Initiative { get; set; }
         public String Pokedex_Eintrag { get; set; }
         public Byte[] Bild { get; set; }
-        public ICollection<Typ> Typ { get; set; }
+        public virtual ICollection<Typ> Typs { get; set; }
         #endregion
 
 
@@ -44,28 +44,33 @@ namespace M120Projekt.Data
         {
             using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.Typ) select record).ToList();
+                return (from record in context.Pokemons.Include(x => x.Typs) select record).ToList();
             }
         }
         public static Data.Pokemon GetPokemonByNr(Int64 Nr_Pokemon)
         {
             using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.Typ) where record.Nr_Pokemon == Nr_Pokemon select record).FirstOrDefault();
+                return (from record in context.Pokemons.Include(x => x.Typs) where record.Nr_Pokemon == Nr_Pokemon select record).FirstOrDefault();
             }
         }
         public static List<Data.Pokemon> SearchByName(String name)
         {
             using (var context = new Context())
             {
-                return (from record in context.Pokemon.Include(x => x.Typ) where record.Name.StartsWith(name) select record).ToList();
+                return (from record in context.Pokemons.Include(x => x.Typs) where record.Name.StartsWith(name) select record).ToList();
             }
         }
-        public Int64 Erstellen()
+        public Int64 Erstellen(List<Int64> typen)
         {
             using (var context = new Context())
             {
-                context.Pokemon.Add(this);
+                foreach(Int64 id in typen)
+                {
+                    Typ typ = context.Typs.FirstOrDefault(t => t.ID_Typ == id);
+                    Typs.Add(typ);
+                }
+                context.Pokemons.Add(this);
                 //TODO Check ob mit null möglich, sonst throw Ex
                 //if (FremdschluesselListe_Typ != null) context.Typ.Attach(FremdschluesselListe_Typ);
                 context.SaveChanges();
@@ -77,7 +82,7 @@ namespace M120Projekt.Data
             using (var context = new Context())
             {
                 //TODO null Checks?
-                this.Typ = null;
+                this.Typs = null;
                 context.Entry(this).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return this.Nr_Pokemon;

@@ -16,9 +16,8 @@ namespace M120Projekt.Data
         #region Datenbankschicht
         [Key]
         public Int64 ID_Typ { get; set; }
-        [Required]
         public String Type { get; set; }
-        public ICollection<Pokemon> Pokemon { get; set; }
+        public virtual ICollection<Pokemon> Pokemons { get; set; }
         #endregion
 
 
@@ -33,21 +32,21 @@ namespace M120Projekt.Data
         {
             using (var context = new Context())
             {
-                return (from record in context.Typ select record).ToList();
+                return (from record in context.Typs select record).ToList();
             }
         }
         public static Data.Typ GetTypeByID(Int64 idtyp)
         {
             using (var context = new Context())
             {
-                return (from record in context.Typ where record.ID_Typ == idtyp select record).FirstOrDefault();
+                return (from record in context.Typs where record.ID_Typ == idtyp select record).FirstOrDefault();
             }
         }
         public static List<Data.Typ> Search(String value)
         {
             using (var context = new Context())
             {
-                var klasseBquery = (from record in context.Typ where record.Type == value select record).ToList();
+                var klasseBquery = (from record in context.Typs where record.Type == value select record).ToList();
                 return klasseBquery;
             }
         }
@@ -64,16 +63,16 @@ namespace M120Projekt.Data
                 Console.WriteLine("CREATE EXCEPTION: Type WRONG, NULL");
                 throw new Exception("EXCEPTION AT CREATING VALUE, Type IS WRONG");
             }
-            if(Pokemon == null)
+            if(Pokemons == null)
             {
-                Pokemon = new Collection<Data.Pokemon>();
+                Pokemons = new Collection<Data.Pokemon>();
             }
 
             using (var context = new Context())
             {
                 try
                 {
-                    context.Typ.Add(this);
+                    context.Typs.Add(this);
                     context.SaveChanges();
                     return this.ID_Typ;
                 }

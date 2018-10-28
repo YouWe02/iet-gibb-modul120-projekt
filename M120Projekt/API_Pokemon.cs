@@ -12,7 +12,7 @@ namespace M120Projekt
     {
 
        
-      public static void Create_Pokemon(Int64 pkdx_nr, String name, Int64 generation, Int64 angriff, Int64 verteidigung, Int64 spezial_angriff, Int64 spezial_verteidigung, Int64 KP, Int64 initiative, String pokedexEintrag, ICollection<Data.Typ> typen)
+      public static void Create_Pokemon(Int64 pkdx_nr, String name, Int64 generation, Int64 angriff, Int64 verteidigung, Int64 spezial_angriff, Int64 spezial_verteidigung, Int64 KP, Int64 initiative, String pokedexEintrag, List<Int64> typen)
         {
             Debug.Print("--- Create Pokemon ---");
             Data.Pokemon pokemon = new Data.Pokemon();
@@ -26,8 +26,8 @@ namespace M120Projekt
             pokemon.KP = KP;
             pokemon.Initiative = initiative;
             pokemon.Pokedex_Eintrag = pokedexEintrag;
-            pokemon.Typ = typen;
-            Int64 pokemonID = pokemon.Erstellen();
+            pokemon.Typs = new Collection<Data.Typ>();
+            Int64 pokemonID = pokemon.Erstellen(typen);
             Debug.Print("Artikel erstellt mit Id:" + pokemonID);
         }
         // Read
@@ -37,7 +37,7 @@ namespace M120Projekt
             // Demo liest alle
             foreach (Data.Pokemon pokemon in Data.Pokemon.GetAllPokemons())
             {
-                Debug.Print("Pokemon Id:" + pokemon.Nr_Pokemon + " Name:" + pokemon.Name + " Typen:" + (from record in pokemon.Typ select record).ToList<Data.Typ>().ToString());
+                Debug.Print("Pokemon Id:" + pokemon.Nr_Pokemon + " Name:" + pokemon.Name + " Typen:" + (from record in pokemon.Typs select record).ToList<Data.Typ>().ToString());
             }
         }
         /**
