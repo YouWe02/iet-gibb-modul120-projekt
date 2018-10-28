@@ -91,6 +91,19 @@ namespace M120Projekt
             }
 
             API_Pokemon.Create_Pokemon(pkdx_nr, name, generation, angriff, verteidigung, spezial_angriff, spezial_verteidigung, kp, initiative, pokedex_eintrag, typen);
+
+            txt_Name_String.Text = "";
+            txt_PokedexNr_Int.Text = "";
+            dd_Generation.SelectedIndex = 0;
+            txt_Angriff_Int.Text = "";
+            txt_Verteidigung_Int.Text = "";
+            txt_SpezialAngriff_Int.Text = "";
+            txt_SpezialVerteidigung_Int.Text = "";
+            txt_KP_Int.Text = "";
+            txt_Initiative_Int.Text = "";
+            txt_Pokedex.Text = "";
+            dd_Typen1.SelectedIndex = 0;
+            dd_Typen2.SelectedIndex = 0;
         }
         public void InitDropDownsTyp()
         {

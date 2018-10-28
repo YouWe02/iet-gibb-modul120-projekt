@@ -25,6 +25,18 @@ namespace M120Projekt
         public Home()
         {
             InitializeComponent();
+            firstOutput();
+        }
+
+        public void firstOutput()
+        {
+            List<Data.Pokemon> pkmns = API_Pokemon.Get_All_Pokemon();
+
+            foreach(Data.Pokemon pkmn in pkmns)
+            {
+                PokemonRow row = new PokemonRow(pkmn);
+                this.pkmns.Children.Add(row);
+            }
         }
 
     }

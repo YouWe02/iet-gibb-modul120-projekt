@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="Navbar" Height="800" Width="800">
+        Title="Navbar" Height="800" Width="1500">
     <StackPanel Margin="10">
         <!-- NavBar -->
         <StackPanel Orientation="Horizontal">

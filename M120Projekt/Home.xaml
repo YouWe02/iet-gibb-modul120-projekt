@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d">
-    <StackPanel Margin="10">
+    <StackPanel Margin="10" Name="pkmns">
         
         
     </StackPanel>

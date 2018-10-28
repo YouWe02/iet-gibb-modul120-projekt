@@ -70,6 +70,9 @@
     <Compile Include="Navbar.xaml.cs">
       <DependentUpon>Navbar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PokemonRow.xaml.cs">
+      <DependentUpon>PokemonRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popup.xaml.cs">
       <DependentUpon>Popup.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
     <Compile Include="Data\Typ.cs" />
     <Compile Include="Data\Context.cs" />
     <Page Include="Navbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PokemonRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

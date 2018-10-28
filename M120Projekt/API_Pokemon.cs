@@ -31,14 +31,16 @@ namespace M120Projekt
             Debug.Print("Artikel erstellt mit Id:" + pokemonID);
         }
         // Read
-        public static void Get_All_Pokemon()
+        public static List<Data.Pokemon> Get_All_Pokemon()
         {
             Debug.Print("--- Pokemon_Read ---");
             // Demo liest alle
-            foreach (Data.Pokemon pokemon in Data.Pokemon.GetAllPokemons())
-            {
-                Debug.Print("Pokemon Id:" + pokemon.Nr_Pokemon + " Name:" + pokemon.Name + " Typen:" + (from record in pokemon.Typs select record).ToList<Data.Typ>().ToString());
-            }
+            return Data.Pokemon.GetAllPokemons();
+        }
+
+        public static void Delete_Pokemon(long id)
+        {
+            Data.Pokemon.GetPokemonByNr(id).Loeschen();
         }
         /**
         // Update
